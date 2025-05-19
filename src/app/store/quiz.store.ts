@@ -1,0 +1,53 @@
+import {
+  signalStore,
+  withState,
+  withComputed,
+  withMethods,
+  patchState,
+} from '@ngrx/signals';
+import { initialQuizSlice } from './quiz.slice';
+import { computed } from '@angular/core';
+import { addAnswerUpdater, resetQuizUpdater } from './quiz.updaters';
+import { getCurrentCount } from './quiz.helper';
+
+// signalStore is a meta function and return a new type
+// the state inside the signalStore is wrapped in a signal
+export const QuizStore = signalStore(
+  {
+    // the store is self provided in the root
+    providedIn: 'root',
+  },
+  withState(initialQuizSlice),
+  // for accessing reusable computed create a object with methods and return it
+  withComputed((store) => {
+    const currentQuestionIndex = computed(() => store.answers().length);
+    const isDone = computed(
+      () => currentQuestionIndex() === store.questions().length
+    );
+    const currentQuestion = computed(
+      () => store.questions()[currentQuestionIndex()]
+    );
+
+    const questionsCount = computed(() => store.questions().length);
+
+    const currentCount = computed(() =>
+      getCurrentCount(store.answers(), store.questions())
+    );
+
+    return {
+      currentQuestionIndex,
+      isDone,
+      currentQuestion,
+      questionsCount,
+      currentCount
+    };
+  }),
+  withMethods((store) => ({
+    addAnswer: (index: number) => {
+      patchState(store, addAnswerUpdater(index));
+    },
+    resetQuiz: () => {
+      patchState(store, resetQuizUpdater());
+    },
+  }))
+);

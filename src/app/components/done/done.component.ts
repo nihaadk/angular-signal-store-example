@@ -1,5 +1,6 @@
 import { PercentPipe } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { QuizStore } from '../../store/quiz.store';
 
 @Component({
   selector: 'app-done',
@@ -8,9 +9,11 @@ import { Component, computed, signal } from '@angular/core';
   styleUrl: './done.component.scss',
 })
 export class DoneComponent {
-  readonly correct = signal(3);
+  readonly store = inject(QuizStore);
 
-  readonly total = signal(8);
+  readonly correct = this.store.currentCount;
+
+  readonly total = this.store.questionsCount;
 
   readonly score = computed(() => this.correct() / this.total());
 }

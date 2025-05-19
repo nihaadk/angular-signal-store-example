@@ -1,17 +1,16 @@
-import { Component, signal } from '@angular/core';
-import { Question } from '../../interfaces/questions.interface';
-import { ColorNamePipe } from "../../pipe/color-name.pipe";
+import { Component, inject, signal } from '@angular/core';
+import { ColorNamePipe } from '../../pipe/color-name.pipe';
+import { QuizStore } from '../../store/quiz.store';
+import { patchState } from '@ngrx/signals';
 
 @Component({
   selector: 'app-question-presenter',
   imports: [ColorNamePipe],
   templateUrl: './question-presenter.component.html',
-  styleUrl: './question-presenter.component.scss'
+  styleUrl: './question-presenter.component.scss',
 })
 export class QuestionPresenterComponent {
- readonly question = signal<Question>({
-    caption: ['Red', 'Green'],
-    answers: ['Red', 'Green', 'Blue', 'Yellow'],
-    correctIndex: 3
-  });
+  readonly store = inject(QuizStore);
+
+  readonly question = this.store.currentQuestion;
 }

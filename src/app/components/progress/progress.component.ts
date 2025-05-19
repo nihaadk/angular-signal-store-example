@@ -1,16 +1,16 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { QuizStore } from '../../store/quiz.store';
 
 @Component({
   selector: 'app-progress',
   imports: [],
   templateUrl: './progress.component.html',
-  styleUrl: './progress.component.scss'
+  styleUrl: './progress.component.scss',
 })
 export class ProgressComponent {
-  readonly value = signal(4);
+  readonly value = input.required<number>();
 
-  readonly max = signal(9);
+  readonly max = input.required<number>();
 
   readonly ratio = computed(() => this.value() / this.max());
-
 }

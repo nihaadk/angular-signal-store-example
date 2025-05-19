@@ -5,7 +5,7 @@ import { MatIcon } from '@angular/material/icon';
   selector: 'app-toolbar',
   imports: [MatIcon],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.css',
+  styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
   readonly caption = input.required<string>();
