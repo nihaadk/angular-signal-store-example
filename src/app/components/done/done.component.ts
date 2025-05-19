@@ -5,7 +5,7 @@ import { Component, computed, signal } from '@angular/core';
   selector: 'app-done',
   imports: [PercentPipe],
   templateUrl: './done.component.html',
-  styleUrl: './done.component.css',
+  styleUrl: './done.component.scss',
 })
 export class DoneComponent {
   readonly correct = signal(3);

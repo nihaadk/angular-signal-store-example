@@ -4,7 +4,7 @@ import { Component, computed, signal } from '@angular/core';
   selector: 'app-progress',
   imports: [],
   templateUrl: './progress.component.html',
-  styleUrl: './progress.component.css'
+  styleUrl: './progress.component.scss'
 })
 export class ProgressComponent {
   readonly value = signal(4);

@@ -6,7 +6,7 @@ import { ColorNamePipe } from "../../pipe/color-name.pipe";
   selector: 'app-question-presenter',
   imports: [ColorNamePipe],
   templateUrl: './question-presenter.component.html',
-  styleUrl: './question-presenter.component.css'
+  styleUrl: './question-presenter.component.scss'
 })
 export class QuestionPresenterComponent {
  readonly question = signal<Question>({
