@@ -15,10 +15,6 @@ import { getCurrentCount } from './quiz.helper';
 // signalStore is a meta function and return a new type
 // the state inside the signalStore is wrapped in a signal
 export const QuizStore = signalStore(
-  {
-    // the store is self provided in the root
-    providedIn: 'root',
-  },
   withState(initialQuizSlice),
   // for accessing reusable computed create a object with methods and return it
   withComputed(store => {
@@ -55,6 +51,8 @@ export const QuizStore = signalStore(
   withHooks(store => ({
     // this is a hook that will be called when the store is created
     onInit: () => {
+      console.log('QuizStore initialized');
+
       const localStorageQuiz = localStorage.getItem('quiz');
       if (localStorageQuiz) {
         const state = JSON.parse(localStorageQuiz) as QuizState;
@@ -66,6 +64,9 @@ export const QuizStore = signalStore(
         const stateJson = JSON.stringify(state);
         localStorage.setItem('quiz', stateJson);
       });
+    },
+    onDestroy: () => {
+      console.log('QuizStore destroyed');
     },
   }))
 );
