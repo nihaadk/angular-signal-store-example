@@ -13,9 +13,14 @@
     color: var(--p-500);
     font-size: 2vh;
 
+
     .header {
       font-size: 5em;
-      font-family: sans-serif, "Courier New", Courier, monospace;
+      font-weight: 900;
+      font-family: sans-serif, 'Courier New', Courier, monospace;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .text {

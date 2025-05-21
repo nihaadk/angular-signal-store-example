@@ -1,5 +1,5 @@
-import { QUESTIONS } from "../../../data/questions";
-import { Question } from "../../../interfaces/questions.interface";
+import { QUESTIONS } from '../../../data/questions';
+import { Question } from '../../../interfaces/questions.interface';
 
 export interface QuizState {
   readonly questions: Question[];
@@ -7,6 +7,6 @@ export interface QuizState {
 }
 
 export const initialQuizSlice: QuizState = {
-    questions: QUESTIONS,
-    answers: [],
-}
+  questions: QUESTIONS,
+  answers: [],
+};

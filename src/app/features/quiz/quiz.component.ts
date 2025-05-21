@@ -7,7 +7,6 @@ import { QuestionPresenterComponent } from './components/question-presenter/ques
 import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
 import { QuizStore } from './store/quiz.store';
 
-
 @Component({
   selector: 'app-quiz',
   imports: [

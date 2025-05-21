@@ -39,7 +39,7 @@ export class ColorService {
 
     while (res.length < count) {
       const newItem = this.randomItem(items);
-      items = items.filter((i) => i !== newItem);
+      items = items.filter(i => i !== newItem);
       res.push(newItem);
     }
 
@@ -62,12 +62,12 @@ export class ColorService {
     const colors = this.randomItems([...this.KNOWN_COLORS], twoOrThree) as
       | [KEYWORD, KEYWORD]
       | [KEYWORD, KEYWORD, KEYWORD];
-    const rgbs = colors.map((clr) => keyword.rgb(clr));
+    const rgbs = colors.map(clr => keyword.rgb(clr));
     const added = this.addRgb(...rgbs);
     const addedHex = rgb.hex(added);
 
     const htmlCols = namer(addedHex).html;
-    const names = htmlCols.map((n) => n.name);
+    const names = htmlCols.map(n => n.name);
     const name = names[0];
 
     const answers = [names[25], names[50], names[75], names[100]];
@@ -85,7 +85,7 @@ export class ColorService {
   randomColorQuiz() {
     return Array.from({
       length: this.randomNumber(6, 20),
-    }).map((_) => this.randomColorQuestion());
+    }).map(_ => this.randomColorQuestion());
   }
 
   splitCamelCase(str: string) {
@@ -245,7 +245,7 @@ export class ColorService {
     ];
 
     return Object.fromEntries(
-      htmlColors.map((clr) => [clr.toLowerCase(), this.splitCamelCase(clr)])
+      htmlColors.map(clr => [clr.toLowerCase(), this.splitCamelCase(clr)])
     );
   }
 
@@ -253,5 +253,5 @@ export class ColorService {
     const COLOR_DISPLAY_NAMES = this.getColorDisplayNameMap();
 
     return COLOR_DISPLAY_NAMES[color.toLowerCase()];
-}
+  }
 }

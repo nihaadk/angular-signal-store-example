@@ -1,4 +1,4 @@
-import { Question } from "../../../interfaces/questions.interface";
+import { Question } from '../../../interfaces/questions.interface';
 
 export function getCurrentCount(
   answers: number[],

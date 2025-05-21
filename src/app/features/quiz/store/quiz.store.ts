@@ -21,7 +21,7 @@ export const QuizStore = signalStore(
   },
   withState(initialQuizSlice),
   // for accessing reusable computed create a object with methods and return it
-  withComputed((store) => {
+  withComputed(store => {
     const currentQuestionIndex = computed(() => store.answers().length);
     const isDone = computed(
       () => currentQuestionIndex() === store.questions().length
@@ -44,7 +44,7 @@ export const QuizStore = signalStore(
       currentCount,
     };
   }),
-  withMethods((store) => ({
+  withMethods(store => ({
     addAnswer: (index: number) => {
       patchState(store, addAnswerUpdater(index));
     },
@@ -52,7 +52,7 @@ export const QuizStore = signalStore(
       patchState(store, resetQuizUpdater());
     },
   })),
-  withHooks((store) => ({
+  withHooks(store => ({
     // this is a hook that will be called when the store is created
     onInit: () => {
       const localStorageQuiz = localStorage.getItem('quiz');

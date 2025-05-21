@@ -11,7 +11,7 @@ export class ColorQuizGeneratorService {
 
   createRandomQuiz(): Observable<Question[]> {
     return of(1).pipe(
-      map((_) => this.#colorService.randomColorQuiz()),
+      map(_ => this.#colorService.randomColorQuiz()),
       delay(2000)
     );
   }
