@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { ColorNamePipe } from '../../pipe/color-name.pipe';
+import { ColorNamePipe } from '../../../../pipe/color-name.pipe';
 import { QuizStore } from '../../store/quiz.store';
-import { patchState } from '@ngrx/signals';
 
 @Component({
   selector: 'app-question-presenter',

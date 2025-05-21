@@ -1,5 +1,4 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
-import { QuizStore } from '../../store/quiz.store';
 
 @Component({
   selector: 'app-progress',

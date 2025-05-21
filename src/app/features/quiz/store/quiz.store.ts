@@ -4,9 +4,11 @@ import {
   withComputed,
   withMethods,
   patchState,
+  withHooks,
+  getState,
 } from '@ngrx/signals';
-import { initialQuizSlice } from './quiz.slice';
-import { computed } from '@angular/core';
+import { initialQuizSlice, QuizState } from './quiz.slice';
+import { computed, effect } from '@angular/core';
 import { addAnswerUpdater, resetQuizUpdater } from './quiz.updaters';
 import { getCurrentCount } from './quiz.helper';
 
@@ -39,7 +41,7 @@ export const QuizStore = signalStore(
       isDone,
       currentQuestion,
       questionsCount,
-      currentCount
+      currentCount,
     };
   }),
   withMethods((store) => ({
@@ -48,6 +50,22 @@ export const QuizStore = signalStore(
     },
     resetQuiz: () => {
       patchState(store, resetQuizUpdater());
+    },
+  })),
+  withHooks((store) => ({
+    // this is a hook that will be called when the store is created
+    onInit: () => {
+      const localStorageQuiz = localStorage.getItem('quiz');
+      if (localStorageQuiz) {
+        const state = JSON.parse(localStorageQuiz) as QuizState;
+        patchState(store, state);
+      }
+
+      effect(() => {
+        const state = getState(store);
+        const stateJson = JSON.stringify(state);
+        localStorage.setItem('quiz', stateJson);
+      });
     },
   }))
 );
